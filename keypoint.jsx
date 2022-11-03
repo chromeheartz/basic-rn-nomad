@@ -45,6 +45,21 @@
 */
 
 /*
-  #2.2
+  #2.2 RN packages
 
+  https://velog.io/@yongyongi/ts-ignore-%EC%99%80-ts-expect-error
+  rn의 문서를 보면 statusbar가 core component라고 적혀져있다
+
+  rn에도 statusbar가 있는데 third-party로 사용하는 이유는 무엇일까
+
+  기존에는 asyncstorage같은것이 있었지만 지금은 없어졌다 그 이유는
+  많은 component가 이전버전에는 있었지만 android, ios로 나뉘어져있고, 정돈되지않았다
+  초기에 rn팀은 많은 component를 제공하고싶어했다
+  TopBarIOS 등등 ..
+
+  또한 많은 API를 제공하고싶어했다. 핸드폰에 item을 저장하는 방식으로 사용했었다.
+
+  하지만 그렇게 하기에는 많은 힘든것들이 있어서 규모를 줄였다
+  이제 AsyncStorage를 사용하려면 다른곳에서 다운받아 써야한다.
 */
+
