@@ -119,3 +119,68 @@
   부모에 속성이 없으면 자식들이 어떤것을 기준으로 flex가 잡히는지 모른다. 
 
 */
+
+/*
+
+  #2.5 - 2.6 Styles
+
+  기본적인 css로 스타일을 했다
+  day View 박스를 계속 복사해서 넣어봐도 
+  스크롤이 되지않는데 왜냐하면 'view'이기 때문에.
+
+  브라우저에서는 자동적으로 스크롤이 되지만 
+  RN에서는 모든것이 component다.
+
+  * scrollView라는 컴포넌트를 사용해볼것이다
+  많은 props가 있다. 포인트는 스크롤 다운 할 수 있게 해준다는것
+
+  이것은 Native ScrollView이다 보다시피 운영체제에서 제공한것.
+  안드로이드에서는 조금 다르게 보일것이다. (바운싱효과가 없을것)
+
+  * 좌우로 이동하게 해볼것이다
+  horizontal 이라는 prop으로 넣어볼것
+  뭔가 간격이 이상해졌다.
+
+  scrollView를 쓸때 style을 만들고 싶으면 style prop을 쓰면 안되고
+  container style을 써야한다
+
+  이렇게 넣어주면 간격은 잡히는데 스크롤이 안된다
+  이렇게 되는 이유는 이 scrollView에 felx를 줄 필요가 없다
+  스크린보다 더 커야 하기 때문에
+
+  show element inspector( 핸드폰을 누르거나 터미널 m)을 보면
+  element가 얼마나 큰지 볼 수 있다 (웹의 inspector같은 느낌인듯)
+
+  우리는 현재 day를 두개씩 보는데 1개씩만 보고싶다.
+  이럴때에 전체 스크린 사이즈를 가져와야 한다
+  * 하나의 day 가 전체화면의 크기가 되도록
+
+  * width: 300이렇게보다는 핸드폰 사이즈를 알려주는 API를 이용해볼것이다
+  우리가 호출할 API는
+  **** Dimensions이다
+
+  이것은 화면 크기를 얻을 수 있다
+  const {height, width} = Dimensions.get('window');이런 구문을 써서
+  가져와서 콘솔에 찍어보면 값이 찍히는걸 볼 수 있다
+
+  ** paginate(페이지 생성)
+
+  pagingEnabled는 우리가 스크롤을 자유롭게 못하게하고
+  scrollView에 pagingEnabled속성을 걸어주면
+  페이지가 생기게 해준다. 스크롤처럼 되지않고 슬라이드처럼 동작하게 된다
+
+  * 하단에 보면 슬라이드 dots처럼 따라다니는것이 있다 그런것을
+  없애주려면
+  showHorizontalScrollIndicator를 사용하면
+  scroll indicator를 숨길것이다
+
+  숨기지 않고 style을 해줄 수 있는 방법 또한 있다
+
+  ** IndicatorStyle
+  이것은 IOS에서만 작동한다. 문서의 상단을 보면 
+  RN이 운영체제에 기능을 요청함을 알 수 있다
+
+  indicator스타일도 vertical, horizontal 있다
+
+
+*/
