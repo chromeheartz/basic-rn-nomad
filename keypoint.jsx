@@ -184,3 +184,75 @@
 
 
 */
+
+/*
+
+  #2.7 Location
+
+  Location을 활용해볼것이다.
+  권한을 요청해야하고 유저의 마지막 위치를 받을 수 있다.
+  현재 위치도 얻을수있고 위치를 관찰하는것도 가능
+
+  geocode는 주소를 받아서 위도와 경도로 변환해준다
+  reverse geocode는 위도와 경도를 함수에 넘겨주면 도시와 구역을 반환할것이다
+  geofencing은 유저가 특정지역을 벗어날떄 알려준다
+
+  허가를 받으면 위치정보를 요청할 수 있는것이다.
+  그리고 API에 정보를 요청할것이다
+  만약 허용을 받지 못하면 state를 변경하고 UI도 바꿀것이다
+
+  const permission = await Location.requestBackgroundPermissionsAsync();
+
+  permission안에 있는 granted를 가져옴
+  조건문으로 거절여부를 확인한다
+
+  * 유저위치정보를 얻고싶다
+  GetCurrentPosition으로 할것이다
+  몇가지 옵션을 받는다 accuracy라는 옵션은
+  얼마나 정확한걸 원하는지 정하는것 1-6까지
+
+  location을 해보면 고도,방향,위도,경도 등등이있다
+  이 안에서 latitude와 longitude를 가져올것이다
+
+  이제 이것을가지고 reverse geocoding을 하기만하면 된다
+  const location = await Location.reverseGeocodeAsync({latitude, longitude}, {...})
+  옵션이 있는 obj를 보내줄것인데 option은 useGoogleMap이다
+
+  Array [
+    Object {
+      "city": "서울특별시",
+      "country": "대한민국",
+      "district": "오류동",
+      "isoCountryCode": "KR",
+      "name": "오류동 56-66",
+      "postalCode": "08271",
+      "region": "서울특별시",
+      "street": "오류동",
+      "streetNumber": "56-66",
+      "subregion": null,
+      "timezone": "Asia/Seoul",
+    },
+  ]
+
+  이런식으로 현재 위치를 반환해준다
+  여기서 필요한 값들만 받아오면 된다
+  여기서 볼 수 있듯이 배열로 들어온다
+  city를 화면에 뿌려주는것까지 하였다
+
+  이제 location을 저장해야한다. 다른 function에서도 쓸 수 있도록
+
+   const {
+      coords: { latitude, longitude },
+    } = await Location.getCurrentPositionAsync({ accuracy: 5 });
+    // console.log(location)
+    const location = await Location.reverseGeocodeAsync(
+      { latitude, longitude },
+      { useGoogleMaps: false }
+    );
+    setCity(location[0].city)
+    
+    이 부분을 나누어야할수 있다 이 함수는 권한을 요청하는 ask()지만
+    여기서 location을 가져오기 때문에.
+
+
+*/

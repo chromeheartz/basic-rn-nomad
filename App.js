@@ -1,4 +1,6 @@
-import React from "react";
+import * as Location from "expo-location";
+
+import React, { useState, useEffect } from "react";
 import { View, Text, Dimensions, StyleSheet, ScrollView } from "react-native";
 
 // 창의 크기를 가져온다
@@ -7,10 +9,32 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 // console.log(width);
 
 export default function App() {
+  const [city, setCity] = useState("Loading..");
+  const [location, setLocation] = useState(null);
+  const [ok, setOk] = useState(true);
+  const ask = async () => {
+    const { granted } = await Location.requestForegroundPermissionsAsync();
+    if (!granted) {
+      setOk(false);
+    }
+    // console.log(permission)
+    const {
+      coords: { latitude, longitude },
+    } = await Location.getCurrentPositionAsync({ accuracy: 5 });
+    // console.log(location)
+    const location = await Location.reverseGeocodeAsync(
+      { latitude, longitude },
+      { useGoogleMaps: false }
+    );
+    setCity(location[0].city)
+  };
+  useEffect(() => {
+    ask();
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.city}>
-        <Text style={styles.cityName}>Seoul</Text>
+        <Text style={styles.cityName}>{city}</Text>
       </View>
       <ScrollView
         pagingEnabled
