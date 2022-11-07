@@ -292,3 +292,46 @@
 
 
 */
+
+/*
+  #2.8 Recap
+
+  reverseGeocodeAsync : 위도와 경도를 주소로 변환해줌.
+  GeocodeAsync: 주소를 위도, 경도 숫자로 변환해줌.
+
+
+
+*/
+
+/*
+  #2.9 Icons
+
+  expo 에서는 vector-icons로 많은 아이콘이 있는 라이브러리에 접근이 가능하다
+  몇몇개의 아이콘은 이름이 있고 나머지는 패밀리라고 한다
+  패밀리는 아이콘들의 종류라고 생각하면 된다 font awesome, evil icons ...등등
+
+  https://icons.expo.fyi/
+
+  * 일단 API가 제공하는 모든 날씨를 찾아서
+  아이콘의 이름을 연결할것이다
+
+  hashmap같은것을 만들것이다(object같은것을 쓰겠다는 뜻)
+  이렇게 하는이유는 이따가 날씨명을 가져다가 component에 쓸것이다
+
+  ** 
+  <Fontisto name="rain" size={48} color="white" /> 
+  이렇게만하면 계속 비오는 아이콘으로 고정될것인데
+  icons object(hash map)안에 날씨의 main name을 보내줄것이다
+  ({day.weather[0].main})
+  현재 우리는 icons["Rain"]를 한것이나 마찬가지다
+
+  다른 아이콘들을 해주어야 한다
+
+  // 구조분해할당 확인
+  <View style={{ ...styles.day, alignItmes: "center"}}>
+
+  이거는 스타일시트에 스타일을 하나만 적용하고
+  다른 스타일을 추가하고싶다면 하는 방법이다
+  커스텀스타일과 인라인스타일을 합치는 방법.
+
+*/

@@ -9,6 +9,8 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Fontisto } from "@expo/vector-icons";
 
 // 창의 크기를 가져온다
 // object안에 있는 width를 가져오고 그것을 SCREEN_WIDTH로 바꾼것
@@ -16,6 +18,16 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 // console.log(width);
 
 const API_KEY = "4253ae16213a301c895a18c443e60b35";
+
+const icons = {
+  Clouds: "cloudy",
+  Rain: "umbrella",
+  Clear: "sunglasses",
+  Atmosphere: "wind",
+  Snow: "snow",
+  Drizzle: "day-rain",
+  Thunderstorm: "lightning",
+};
 
 export default function App() {
   const [city, setCity] = useState("Loading..");
@@ -47,6 +59,7 @@ export default function App() {
     // console.log(json.daily)
   };
   useEffect(() => {
+    // 컴포넌트가 마운트되면 함수 실행
     getWeather();
   }, []);
   return (
@@ -62,7 +75,8 @@ export default function App() {
         contentContainerStyle={styles.weather}
       >
         {days.length === 0 ? (
-          <View style={styles.day}>
+          // 구조분해할당 확인
+          <View style={{ ...styles.day, alignItmes: "center"}}>
             <ActivityIndicator
               color="white"
               size="large"
@@ -73,17 +87,30 @@ export default function App() {
           </View>
         ) : (
           days.map((day, index) => {
-            const date = new Date(day.dt * 1000).toString().substring(0, 10)
+            const date = new Date(day.dt * 1000).toString().substring(0, 10);
             return (
               <View key={index} style={styles.day}>
                 <Text style={styles.date}>{date}</Text>
-                <Text style={styles.temp}>{parseFloat(day.temp.day).toFixed(1)}
-                  <Text style={styles.tempIcon}>
-                    &#8451;
+
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                >
+                  <Text style={styles.temp}>
+                    {parseFloat(day.temp.day).toFixed(1)}
+                    <Text style={styles.tempIcon}>&#8451;</Text>
                   </Text>
-                </Text>
+                  {/* <Fontisto name="cloudy" size={24} color="white" /> */}
+                  <Fontisto name={icons[day.weather[0].main]} size={48} color="white" style={{ marginLeft: 10}} />
+                </View>
+
                 <Text style={styles.description}>{day.weather[0].main}</Text>
-                <Text style={styles.tinyDescription}>{day.weather[0].description}</Text>
+                <Text style={styles.tinyDescription}>
+                  {day.weather[0].description}
+                </Text>
               </View>
             );
           })
@@ -106,35 +133,39 @@ const styles = StyleSheet.create({
   cityName: {
     fontSize: 38,
     fontWeight: "600",
-    color: "white"
+    color: "white",
   },
-  weather: {},
+  weather: {
+    justifyContent: "flex-start",
+  },
   day: {
     width: SCREEN_WIDTH,
-    alignItems: "center",
-    color: "white"
+    paddingHorizontal: 15,
+    color: "white",
   },
   date: {
     fontSize: 28,
-    color: "white"
+    color: "white",
   },
   temp: {
-    marginTop: 10,
-    fontSize: 108,
-    color: "white"
+    marginTop: 5,
+    fontSize: 90,
+    color: "white",
+    fontWeight: "bold",
   },
   tempIcon: {
-    fontSize: 80,
-    color: "white"
-  },  
+    fontSize: 72,
+    color: "white",
+    fontWeight: "bold",
+  },
   description: {
-    marginTop: 10,
-    fontSize: 60,
-    color: "white"
+    marginTop: 5,
+    fontSize: 48,
+    color: "white",
   },
   tinyDescription: {
     marginTop: 5,
-    fontSize: 30,
-    color: "white"
-  }
+    fontSize: 24,
+    color: "white",
+  },
 });
