@@ -258,5 +258,37 @@
 */
 
 /*
+  #2.8 Weather
+
+  정보를 받아오기 위해 openweathermap 의 api를 이용해볼것이다
+  api 키를 가져왔는데 이게 app이면 서버에 저장해놓을것이다 
+  이번강의에서는 그냥 둘것이다 하지만 안전하지 않다는것을 알고 있어야한다
+
+  const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=alerts&appid=${API_KEY}`)
+  const json = await response.json();
+  console.log(json);
+
+  API 호출을 한 후에 
+  우리는 많은 반환값들 중에서 daily를 사용할것이다
+
+  우리가 사용할 값을 setDays에 넣어서 days state로 사용해야겠다
+
+  일단 로딩을 구현해줄것이다
+  days.length가 0이라면 로딩중 표시
+
+  ** ActivityIndicator
+
+  RN문서에서 찾아보면 로딩중을 표시해줄수 있는 코어 컴포넌트를 찾을 수 있다
+  컴포넌트를 가져와서 임포트해주고 스타일링도 가능하다
+
+  map을 돌려서 days를 뿌려주었는데 온도가 미국에서 사용하는 단위로 나온다.
+  이번엔 단위를 바꾸어볼것
+
+  parameter에 units를 metric으로 지정할것이다
+
+  온도를 조금 바꾸어주기 위해서
+  parseFloat(day.temp.day).toFixed(1)
+  소수점 한자리로 잘라버렸다
+
 
 */
