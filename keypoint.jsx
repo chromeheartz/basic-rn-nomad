@@ -47,3 +47,55 @@
   press만 해도 '들어갔다나오는행위'를 말하기때문에 한쪽으로 할것아니면 onPress
 
 */
+
+/*
+  #3.2 Text input
+
+  work, travel이 클릭이 되었을때 상태를 true로 바꾸어주기위해
+  onPress에 함수를 넣어주었다
+
+  스타일을 object로 사용하며 확장하기 위해 구조분해할당으로 풀어주고 color를 입력
+
+  react-native에는 text input이라는 것이 있다.
+  placeholder등 prop으로 던지면 된다
+  여기서도 조건문을 걸어서 바꾸어줄수있다
+
+  onFocus는 화면을 터치ㅏ면 쓸 준비가 된 상태를 말함
+  ㅐnChangeText에서는 우리가 입력한 text를 받을 수 있다
+
+  keyboardType은 가끔 유저가 이메일이나 폰번호를 쳐야할때
+  키보드 타입을 바꿀수있게 만들어준다.
+  android보다 ios가 더 많은게 있다 
+  예를들어 URL은 유저에게 URL을 쓰도록 요구할 수 있다.
+
+  * 또 자주쓸것은 returnKeyType, returnKeyLabel
+  returnKeyLabel은 android에서만 가능
+  returnKeyType을 사용하면 키패드의 return부분을 바꿀 수 있다
+
+  ** 이것이 props를 통해 시스템을 컨트롤하는 방법이다
+  react는 component와 props의 조합으로 어떤 플랫폼에도 접근하게해준다
+
+  * secureTextEntry
+  비밀번호를 사용할때 쓴다. **** 이런식으로 안보이게나옴
+
+  * multiline
+  한줄이상 쓰는 경우에 쓸수있다
+  텍스트처럼 글을 쓸 수 있게 된다(textarea 같은느낌)
+
+
+  placeholderTextColor도 바꾸는것이 가능하다
+
+
+  *** 현재 우리가 필요한것. 텍스트가 어떻게 변했는지 확인하는것
+  onChangeText이것은 함수이다.함수를 이어주고
+  event객체를 콘솔에 찍어보면 바로 value값이 나오는것을 볼 수 있다
+
+  우리는 브라우저에 있지 않다. 브라우저에는 이벤트나 타겟이 있지만 rn에는 없다
+
+  * autocorrect
+  자동완성을 꺼줄수있다
+
+  * autoCapitalize 
+  대문자들같은 자동완성을해줌
+
+*/
