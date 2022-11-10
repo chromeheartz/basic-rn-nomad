@@ -13,10 +13,22 @@ export default function App() {
   const [working, setWorking] = useState(true);
   const travel = () => setWorking(false);
   const work = () => setWorking(true);
-  
-  const [text, setText] = useState("");
 
-  const onChangeText = (payload) => setText(payload)
+  const [text, setText] = useState("");
+  const [toDos, setToDos] = useState({});
+  const addTodo = () => {
+    if (text === "") {
+      return;
+    }
+    // save to do
+    const newToDos = Object.assign({}, toDos, {
+      [Date.now()]: { text, work: working },
+    });
+    setToDos(newToDos)
+    setText("");
+  };
+  console.log(toDos)
+  const onChangeText = (payload) => setText(payload);
   return (
     <View style={styles.container}>
       <StatusBar style="white" />
@@ -41,8 +53,9 @@ export default function App() {
       </View>
       <TextInput
         onChangeText={onChangeText}
+        onSubmitEditing={addTodo}
         value={text}
-        returnKeyType="send"
+        returnKeyType="done"
         placeholder={working ? "Add a To Do" : "Where do you want to go?"}
         style={styles.input}
       />

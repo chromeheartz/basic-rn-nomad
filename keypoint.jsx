@@ -99,3 +99,36 @@
   대문자들같은 자동완성을해줌
 
 */
+
+/*
+
+  #3.3 To Dos
+
+  키보드에서 return을 누르면 onSubmitEditing 이벤트가 일어난다
+  const [toDos, setToDos] = useState({});
+  hashmap같은것을 만들기 위해 object로 만들었다. 조금더 개념을 잡기위해서는
+  유튜브에서 알고리즘과 데이터구조 확인
+
+  const todos = {}l
+  todos[Date.now()] = {text:"record", work:true}
+
+  이런식으로 넣어서 보게되면 id같은것을 가지고있고
+  payload도 가지고있다. 추후에 지우려고하게되면 id만 지우면되니 편리할것이다. 수정도 마찬가지
+
+  **** todos[Date.now()] = {}
+  이런식으로 state를 직접적으로 수정하는것은 react에서 할 수 없다.
+  우리는 항상 새로운 object를 set함수에 보내주어야한다
+
+  그래서 object assign을 쓸것인데 이것은
+  object를 가져다가 다른 object와 합쳐서 새로운 object를 리턴해준다
+
+  const newToDos = Object.assign({}, toDos, {
+    [Date.now()]: { text, work: working },
+  });
+
+  이 부분에서 우리는 3개의 object를 결합하기 위해 object assign을 사용했다
+  비어있는 object를 결합했다 (target)
+  그리고 이전 todo를 새로운 todo와 합침
+
+
+*/
