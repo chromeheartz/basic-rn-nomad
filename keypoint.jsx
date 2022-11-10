@@ -132,3 +132,16 @@
 
 
 */
+
+/*
+
+  #3.4 Paint To Dos
+
+  Object.assign말고 ES6문법으로도 사용할 수 있다.
+  const newTodDos = {
+    ...toDos,
+    [Date.now()]: { text, work: working },
+  };
+  
+
+*/
