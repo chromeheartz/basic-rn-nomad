@@ -142,6 +142,36 @@
     ...toDos,
     [Date.now()]: { text, work: working },
   };
-  
+
+  보통 배열에서는 map으로 아이템들을 풀어 헤치지만
+  object일경우에는 Object.keys를 사용하면된다
+  x = {111111: {...}, 222222: {...}} 라는 Object가 있다고 가정
+
+  Object.keys(x)를 하게되면
+  ["1111","2222"]이런식으로 key값들만 뿌려져서나온다
+
+  Object.keys(x).map(key => x[key])라고 뿌려주게되면
+  {....} 값들이 풀어져서 배열로 들어온다
+
+
+*/
+
+/*
+
+  #3.5 Persist
+
+  각 탭에 맞게 보일수있도록 수정해줄것이다
+  Object.keys로 돌려주는 부분에서 key의 working이 가지고있는것과 working(state)가 
+  같은것만 출력시켜주도록 조건을 걸었다
+
+  expo install을 사용하면 npm install을 기본적으로 해주는데
+  expo가 사용가능한 버전을 설치해준다
+
+  ** toDo를 사용자의 폰에 저장하기
+  expo에서 AsyncStorage를 이용할것이다
+
+  saveToDos에서 setItem은 promise를 return해줄것이다
+  loadToDos로 가져오는 함수를 만들고 
+  컴포넌트가마운드 될때 확인을 위해 useEffect로 콘솔을 찍어봄
 
 */
