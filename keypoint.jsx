@@ -175,3 +175,42 @@
   컴포넌트가마운드 될때 확인을 위해 useEffect로 콘솔을 찍어봄
 
 */
+
+/*
+
+  #3.6 Delete
+
+  버튼을 누르면 삭제하고싶은지 확인하는 메시지를 보여줄것이다
+  asyncStorage를 사용할때 try문을 사용하는것과 모든 폰이 빠르지 않기때문에
+  로딩 state를 추가해볼것
+
+  <TouchableOpacity onPress={() => deleteTodDo(key)}>
+  버튼에 익명함수를 넣어주는 이유는 deleteToDo에 key(id)와 함께 호출되어야 하기 때문
+
+  ** deleteToDo쪽이 조금 중요한데
+  일단 빈 배열에 기존에 있던 toDos를 가져오고 그 안에서
+  누른 버튼이 있는 객체의 가지고있는 key값을 인덱스접근자로 넘겨주어서
+  delete를 해준다
+
+  const newToDos = {...toDos}
+  delete newToDos[key]
+  이 object는 아직 state에 없기 때문에 mutate해도 된다
+
+  * Alert API
+
+  대화창(팝업창)을 실행시키는데
+  alert(), prompt() 두가지가 있다
+  prompt는 IOS에서만 사용 가능
+
+  alert은 제목이 있고 메세지, 버튼을 보낼수있따
+  Prompt도 버튼을 보낼 수 있음
+
+  매개변수들로 메세지, object안에 text들을 담아 넣는데
+  onPress라는 버튼이 눌렸을때 실행되는 function이 있다
+  I'm Sure만 onPress를 실행할것이다
+
+  이 때에는 async await를 빼도 상관은 없다 기다리지않고 나중에 실행
+
+  ios에서만 할 수 있는 style인 destructive도 있다
+
+*/

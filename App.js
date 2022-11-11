@@ -8,8 +8,10 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Feather } from '@expo/vector-icons'; 
 
 const STORAGE_KEY = "@toDos";
 
@@ -20,25 +22,25 @@ export default function App() {
 
   useEffect(() => {
     loadToDos();
-  },[])
+  }, []);
 
   const [text, setText] = useState("");
   const [toDos, setToDos] = useState({});
   const saveToDos = async (toSave) => {
     try {
-      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(toSave))
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   const loadToDos = async () => {
     try {
-      const s = await AsyncStorage.getItem(STORAGE_KEY)
-      setToDos(JSON.parse(s))
+      const s = await AsyncStorage.getItem(STORAGE_KEY);
+      setToDos(JSON.parse(s));
     } catch (error) {
-      console.log(erro)
+      console.log(erro);
     }
-  }
+  };
   const addTodo = async () => {
     if (text === "") {
       return;
@@ -58,6 +60,27 @@ export default function App() {
   };
   console.log(toDos);
   const onChangeText = (payload) => setText(payload);
+  const deleteTodDo = async (key) => {
+    Alert.alert(
+      "Delete To DO?",
+      "are you sure?", // null 가능
+      [
+        {
+          text: "cancel",
+        },
+        {
+          text: "i'm sure",
+          style: "destructive",
+          onPress: () => {
+            const newToDos = { ...toDos };
+            delete newToDos[key];
+            setToDos(newToDos);
+           saveToDos(newToDos);
+          },
+        },
+      ]
+    );
+  };
   return (
     <View style={styles.container}>
       <StatusBar style="white" />
@@ -93,6 +116,11 @@ export default function App() {
           toDos[key].working === working ? (
             <View key={key} style={styles.toDo}>
               <Text style={styles.toDoText}>{toDos[key].text}</Text>
+              <TouchableOpacity onPress={() => deleteTodDo(key)}>
+                <Text>
+                  <Feather name="delete" size={20} color="red" />
+                </Text>
+              </TouchableOpacity>
             </View>
           ) : null
         )}
@@ -131,10 +159,13 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 20,
     borderRadius: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   toDoText: {
     color: "white",
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500",
   },
 });
