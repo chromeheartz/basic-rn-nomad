@@ -14,14 +14,50 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Feather } from '@expo/vector-icons'; 
 
 const STORAGE_KEY = "@toDos";
+const CATEGORY_KEY = "@categorys"
 
 export default function App() {
-  const [working, setWorking] = useState(true);
-  const travel = () => setWorking(false);
-  const work = () => setWorking(true);
+  const [working, setWorking] = useState();
+  const travel = async () => {
+    const travelState = {
+      "Category" : {
+        "state" : false
+      }
+    }
+    try {
+      await AsyncStorage.setItem(CATEGORY_KEY, JSON.stringify(travelState))
+      loadCates();
+    } catch (error) {
+      console.log(error)
+    }
+  };
+  const work = async () => {
+    const workState = {
+      "Category" : {
+        "state" : true
+      }
+    }
+    try {
+      await AsyncStorage.setItem(CATEGORY_KEY, JSON.stringify(workState))
+      loadCates();
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const loadCates = async () => {
+    try {
+      const categoryState = await AsyncStorage.getItem(CATEGORY_KEY);
+      const parse = JSON.parse(categoryState);
+      setWorking(parse['Category']['state'])
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     loadToDos();
+    loadCates();
   }, []);
 
   const [text, setText] = useState("");
@@ -38,7 +74,7 @@ export default function App() {
       const s = await AsyncStorage.getItem(STORAGE_KEY);
       setToDos(JSON.parse(s));
     } catch (error) {
-      console.log(erro);
+      console.log(error);
     }
   };
   const addTodo = async () => {
@@ -58,7 +94,7 @@ export default function App() {
     await saveToDos(newToDos);
     setText("");
   };
-  console.log(toDos);
+  // console.log(toDos);
   const onChangeText = (payload) => setText(payload);
   const deleteTodDo = async (key) => {
     Alert.alert(
