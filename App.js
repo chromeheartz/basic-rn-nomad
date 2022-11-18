@@ -11,37 +11,37 @@ import {
   Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Feather } from '@expo/vector-icons'; 
+import { Feather } from "@expo/vector-icons";
 
 const STORAGE_KEY = "@toDos";
-const CATEGORY_KEY = "@categorys"
+const CATEGORY_KEY = "@categorys";
 
 export default function App() {
   const [working, setWorking] = useState();
   const travel = async () => {
     const travelState = {
-      "Category" : {
-        "state" : false
-      }
-    }
+      Category: {
+        state: false,
+      },
+    };
     try {
-      await AsyncStorage.setItem(CATEGORY_KEY, JSON.stringify(travelState))
+      await AsyncStorage.setItem(CATEGORY_KEY, JSON.stringify(travelState));
       loadCates();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   const work = async () => {
     const workState = {
-      "Category" : {
-        "state" : true
-      }
-    }
+      Category: {
+        state: true,
+      },
+    };
     try {
-      await AsyncStorage.setItem(CATEGORY_KEY, JSON.stringify(workState))
+      await AsyncStorage.setItem(CATEGORY_KEY, JSON.stringify(workState));
       loadCates();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -49,11 +49,11 @@ export default function App() {
     try {
       const categoryState = await AsyncStorage.getItem(CATEGORY_KEY);
       const parse = JSON.parse(categoryState);
-      setWorking(parse['Category']['state'])
+      setWorking(parse["Category"]["state"]);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     loadToDos();
@@ -111,7 +111,7 @@ export default function App() {
             const newToDos = { ...toDos };
             delete newToDos[key];
             setToDos(newToDos);
-           saveToDos(newToDos);
+            saveToDos(newToDos);
           },
         },
       ]
@@ -123,7 +123,7 @@ export default function App() {
       <View style={styles.header}>
         <TouchableOpacity onPress={work}>
           <Text
-            style={{ ...styles.btnText, color: working ? "white" : theme.grey }}
+            style={{ fontSize: 38, fontWeight: "600", color: working ? "white" : theme.grey }}
           >
             Work
           </Text>
@@ -131,7 +131,7 @@ export default function App() {
         <TouchableOpacity onPress={travel}>
           <Text
             style={{
-              ...styles.btnText,
+                  fontSize: 38, fontWeight: "600",
               color: !working ? "white" : theme.grey,
             }}
           >
@@ -175,10 +175,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     marginTop: 100,
-  },
-  btnText: {
-    fontSize: 38,
-    fontWeight: "600",
   },
   input: {
     backgroundColor: "white",

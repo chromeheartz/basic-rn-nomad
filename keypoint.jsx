@@ -217,6 +217,32 @@
 
 /*
 
+  # 4.0 introduction
+
+  앱이 마무리되면 테스트해서 보기 위해 터미널에서
+  expo publish 를 실행시킴
+
+  react native web에서는 view를 div로 바꾼다
+  expo start --web 
+  으로하게되면 web으로도 실행을 해볼 수 있는데
+  간혹가다 버그가 있다 예를들어 Asyncstorage를 null처리를 해야하는 것들
+  alert같은것들은 react native web에서는 작동하지 않는다.
+
+  정리 
+  react native web은 react native가 일반적인 html으로 바뀌는것이다
+
+*/
+
+/*
+
+  # 4.1 React Native Web
+
+  
+
+*/
+
+/*
+
   # - Code Challenge
 
   1. 앱 재실행시, 마지막 상태의 Work 또는 Travel 기억하기 (완)
