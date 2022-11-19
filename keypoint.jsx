@@ -251,8 +251,61 @@
   앱이 로드 될때마다 보이는 splash screen이다
 
   icon은 구글이나 app store에서 보이는것이다
+  adaptive-icon은 안드로이드용
 
+  *** platform이라는 api로 우리가 지금
+  어디에있는지 알 수있다
+  안드로이드나 ios에 있다면 Alert를 쓰게 해볼것
+
+  분기문으로 confirm을 사용해서 ture,false 값으로 반환받을것이다
+
+  ** AsyncStorage는 web에서 localstorage로 되는데
+  Alert는 web에서 동작하지않는다
+
+*/
+
+/*
   
+  #4.2 Building for App Store
+
+  앱만들기에서 두번째로 짜증내는게 앱스토어로 보내는것이다
+  하지만 앱스토어로보내려면 여러 과정을 거쳐야하고 99달러를 내고
+  아동용이 아닌지 확인하고 등등을 해야한다
+
+  그래서 일단 build부터 할것이다
+  Expo CLI가 해줄것이다
+
+  앱을 만들떄 처리하는 과정들이 expo서버에서 이루어지고
+  expo에서 mac을 작동시키고 리눅스같은 것들을 실행시킬것이다
+
+  그래서 ios 앱을 만들기 위해 Mac OS를 구동할 필요가 없는것이다
+
+  expo build:androiid를 해주면
+  패키지이름을 물어보고 apk 등등 기본적인것을 물어보고
+  빌드할것이다
+
+  expo서버가 대신하고 ㅇ있는것은
+  내 앱을 app store에 보낼 수 있도록 만들어주고있는것이다
+
+  IOS는
+  expo build:ios
+
+  빌드가 끝나면 앱스토어에 보낼 파일을 받을 수 있다
+
+  ** 가장 좋은점은 컴퓨터가 아닌 expo서버에서 만들어지는것이다
+
+  ** React Native for windows & Mac OS
+  마이크로소프트가 만든것인데
+  windows와 MAC OS에서 작동하는 앱을 만들 수 있다
+
+  https://microsoft.github.io/react-native-windows/docs/0.64/rnm-getting-started
+
+  ** 배포
+
+  npm i gh-pages 후
+  package.jsonㅇ에 script를
+  추가한다 deploy와 predeploy
+
 */
 
 /*
