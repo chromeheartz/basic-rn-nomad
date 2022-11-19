@@ -310,6 +310,57 @@
 
 /*
 
+  #4.3 Going native
+
+  expo의 문제점은 앱 설정에 관해서 많은 설정을 할 수 없다는 점이다
+
+  이유는 근본적인 파일에는 접근을 할 수 없기 때문이다
+  오직 javascript파일에만 접근이 가능하고  app.json을 통해서
+  앱을 설정해 줄 수 있다
+  app.json으로 설정을 하는데 많은것을 할 수 있기는 하다
+  
+  대부분의 앱은 expo SDK를 이용해서 만들 수 있다.
+  많은것들이 있는데 이 것들이 자동으로 작동한다
+
+  나는 expo install expo-app-auth 내가 필요한것만
+  설치하면 된다
+
+  *** 문제는 infrastructure(기초적인 파일들)에 접근이 불가능한것
+
+  대부분 JS, Markup/styling만 우리가 하고
+  나머지는 expo에 맡겨도 괜찮지만
+
+  RN JS Modules, JS interpreter, RN APP, platform APIS
+  RN native Modules 등에 접근해야할 떄는 언제일까
+
+  예를들어 bluetooth low energy lib를 보게되면
+  이건 앱을 블루투스 기기와 연결시킬 수 있도록 해준다
+
+  이 lib는 Expo SDK에 포함되어 있지 않다
+
+  build.gradle이라는 파일에 무언가를 추가해야하고
+  다른 xml파일에 추가해야하고 이런것들이 우리가 접근이
+  가능하지가 않기 때문에 불가능하게 되는것이다.
+
+  * 또 expo앱은 무겁다
+  지금 이 앱은 굉장히 간단하지만
+  사이즈가 꽤나 크다
+
+  이런 이유는 디폴트로 expo앱에 SDK를 넣기 떄문이다
+  facebook같은것들.
+  사용하던지 안하던지 포함시켜서 앱을 만든다
+
+  그래서 eject라는 커맨드가 있다
+  이것을 실행하면 expo에서 꺼내준다
+
+  모든 infrastructure를 노출시켜서 수정을 할 수 있다
+  하지만 이럴때에는 그냥
+  create-react-native-app을 사용하는게 맞다
+
+*/
+
+/*
+
   # - Code Challenge
 
   1. 앱 재실행시, 마지막 상태의 Work 또는 Travel 기억하기 (완)
