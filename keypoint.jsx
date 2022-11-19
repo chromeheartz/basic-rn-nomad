@@ -237,8 +237,22 @@
 
   # 4.1 React Native Web
 
-  
+  폰트사이즈 같은 버그들이 있어서
+  ...styles.btnText로 주던것들을 
+  그냥 style로 잡아주었다
 
+  app.json은 어플리케이션을 내가 원하는대로 만들기 위해 커스텀하는 파일이다
+  ios같은곳에더 각 운영체제에 맞는 설정응ㄹ 해줄수있고
+  android나 web도 가능하다. API reference에서
+  넣을수있는것들을 확인 해볼 수 있다.
+
+  당장 바꿀수있는 아이콘을 바꿔볼것이다
+  assets폴더에 splash가 있는데
+  앱이 로드 될때마다 보이는 splash screen이다
+
+  icon은 구글이나 app store에서 보이는것이다
+
+  
 */
 
 /*

@@ -9,6 +9,7 @@ import {
   TextInput,
   ScrollView,
   Alert,
+  Platform
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Feather } from "@expo/vector-icons";
@@ -97,25 +98,35 @@ export default function App() {
   // console.log(toDos);
   const onChangeText = (payload) => setText(payload);
   const deleteTodDo = async (key) => {
-    Alert.alert(
-      "Delete To DO?",
-      "are you sure?", // null 가능
-      [
-        {
-          text: "cancel",
-        },
-        {
-          text: "i'm sure",
-          style: "destructive",
-          onPress: () => {
-            const newToDos = { ...toDos };
-            delete newToDos[key];
-            setToDos(newToDos);
-            saveToDos(newToDos);
+    if(Platform.OS === "web") {
+      const ok = confirm("Do you want to delete this To Do?")
+      if (ok) {
+        const newToDos = { ...toDos };
+        delete newToDos[key];
+        setToDos(newToDos);
+        saveToDos(newToDos);
+      }
+    } else {
+      Alert.alert(
+        "Delete To DO?",
+        "are you sure?", // null 가능
+        [
+          {
+            text: "cancel",
           },
-        },
-      ]
-    );
+          {
+            text: "i'm sure",
+            style: "destructive",
+            onPress: () => {
+              const newToDos = { ...toDos };
+              delete newToDos[key];
+              setToDos(newToDos);
+              saveToDos(newToDos);
+            },
+          },
+        ]
+      );
+    }
   };
   return (
     <View style={styles.container}>
